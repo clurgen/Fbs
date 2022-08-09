@@ -44,26 +44,37 @@ export default function Connexion() {
   };
 
   return (
-    <div className="information">
-      <label>Login</label>
-      <input
-        placeholder="Email"
-        onChange={(e) => {
-          setMail(e.target.value);
-        }}
-        type="text"
-      />
-      <label>Mot de passe</label>
-      <input
-        placeholder="Mot de passe"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        type="text"
-      />
-      <button onClick={Connexion}>Connexion</button>
-      <h1>{loginStatus}</h1>
-      <ToastContainer></ToastContainer>
+    <div className="container-fluid">
+      <div className="container d-flex justify-content-center">
+        <div className="col-md-3">
+          <div className="form-group">
+            <h1 class="h1">Se connecter</h1>
+            <label>Login</label>
+            <input
+              class="form-control"
+              placeholder="Email"
+              onChange={(e) => {
+                setMail(e.target.value);
+              }}
+              type="text"
+            />
+            <label>Mot de passe</label>
+            <input
+              class="form-control"
+              placeholder="Mot de passe"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              type="text"
+            />
+            <button className="btn btn-primary" onClick={Connexion}>
+              Connexion
+            </button>
+            <h1>{loginStatus}</h1>
+            <ToastContainer></ToastContainer>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
