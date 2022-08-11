@@ -24,10 +24,14 @@ export default class ArticleService {
    * @returns {Promise<AxiosResponse<T>>}
    */
   static async createArticle(body) {
-    console.log(process.env.REACT_APP_HOST_API, body);
     return await axios.post(
       `${process.env.REACT_APP_HOST_API}/createArticle`,
-      body
+      body,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
   }
 
@@ -49,7 +53,7 @@ export default class ArticleService {
    * @param id
    * @returns {Promise<AxiosResponse<T>>}
    */
-  static async delete(id) {
+  static async delete(id, image) {
     return await axios.delete(
       `${process.env.REACT_APP_HOST_API}/article/delete/${id}`
     );

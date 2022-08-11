@@ -123,7 +123,7 @@ export default function UpdateArticle() {
                       }}
                     />
                     <label>Description</label>
-                    <input
+                    <textarea
                       className="form-control"
                       value={description}
                       type="text"
