@@ -1,38 +1,103 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "../../../App.css";
 import ArticleService from "../../services/article.service";
+import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
+import TextTruncate from "react-text-truncate";
 
 export default function LesArticles() {
+  const url = window.location.href;
+  const urlSplit = url.split("/");
+  const playlist = urlSplit[4];
   const [articleList, setArticleList] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const articlePerPage = 3;
+  const pageVisited = pageNumber * articlePerPage;
+
+  const displayArticle = articleList
+    .slice(pageVisited, pageVisited + articlePerPage)
+    .map((val, key) => {
+      let link = `/article/${val.idArticle}`;
+      return (
+        <div
+          key={key}
+          className="col-xl-3 mx-3 py-3 d-flex justify-content-center"
+        >
+          <div className="card shadow p-3 mb-5 text-white bg-dark rounded">
+            <img className="card-img-top" src={val.image} alt={val.name} />
+            <div className="card-body">
+              <h5 className="card-title">{val.name}</h5>
+              <p className="card-text">
+                <TextTruncate
+                  line={3}
+                  element="span"
+                  truncateText="…"
+                  text={val.description}
+                />
+              </p>
+              <Link className="link" to={link}>
+                Lire l'article
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    });
 
   useEffect(() => {
-    const lesArticles = async () => {
-      ArticleService.lesArticles()
-        .then((response) => {
-          setArticleList(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    lesArticles();
-  });
+    if (playlist) {
+      const lesArticlesByPlaylist = async () => {
+        ArticleService.lesArticlesByPlaylist(playlist)
+          .then((response) => {
+            setArticleList(response.data.reverse());
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      lesArticlesByPlaylist();
+    } else {
+      const lesArticles = async () => {
+        ArticleService.lesArticles()
+          .then((response) => {
+            setArticleList(response.data.reverse());
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      lesArticles();
+    }
+  }, []);
+
+  const pageCount = Math.ceil(articleList.length / articlePerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <Fragment>
-      <div className="articles">
-        {articleList.map((val, key) => {
-          return (
-            <div key={key} className="article">
-              <h3>Nom: {val.name}</h3>
-              <h3>Description: {val.description}</h3>
-              <h3>Nombre de Saison: {val.nbSaison}</h3>
-              <h3>Nombre d'épisode {val.nbEpisodes}</h3>
-              <h3>Episode: {val.episode}</h3>
-              <h3>Avis: {val.avis}</h3>
-            </div>
-          );
-        })}
+      <div className="container">
+        {playlist ? (
+          <h1 className="text-center pt-4 py-1">Mes {playlist} </h1>
+        ) : (
+          <h1 className="text-center pt-4 py-1">Mes Articles </h1>
+        )}
+        <div className="row d-flex justify-content-center">
+          {displayArticle}
+          <ReactPaginate
+            previousLabel="Précedent"
+            nextLabel="Suivant"
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName="paginationBtns"
+            previousLinkClassName="previousBtn"
+            pageLinkClassName="pageBtn"
+            nextLinkClassName="nextBtn"
+            disabledClassName="paginationDisabled"
+            activeClassName="paginationActived"
+          />
+        </div>
       </div>
     </Fragment>
   );

@@ -2,20 +2,31 @@ import axios from "axios";
 
 export default class ArticleService {
   /**
-   * Récuperer tout les articles
-   * @returns {Promise<AxiosResponse<T>>}
-   */
-  static async lesArticles() {
-    return await axios.get(`${process.env.REACT_APP_HOST_API}/articles`);
-  }
-
-  /**
    * Recuperer un article
    * @param id
    * @returns {Promise<AxiosResponse<T>>}
    */
   static async lArticle(id) {
     return await axios.get(`${process.env.REACT_APP_HOST_API}/article/${id}`);
+  }
+
+  /**
+   * Recuperer des article en fonction de leur playlist
+   * @param id
+   * @returns {Promise<AxiosResponse<T>>}
+   */
+  static async lesArticlesByPlaylist(playlist) {
+    return await axios.get(
+      `${process.env.REACT_APP_HOST_API}/articles/${playlist}`
+    );
+  }
+
+  /**
+   * Récuperer tout les articles
+   * @returns {Promise<AxiosResponse<T>>}
+   */
+  static async lesArticles() {
+    return await axios.get(`${process.env.REACT_APP_HOST_API}/articles`);
   }
 
   /**
@@ -44,6 +55,19 @@ export default class ArticleService {
   static async updateArticle(id, body) {
     return await axios.put(
       `${process.env.REACT_APP_HOST_API}/article/edit/${id}`,
+      body,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+  }
+
+  static async updateArticleSansImage(id, body) {
+    console.log(body);
+    return await axios.put(
+      `${process.env.REACT_APP_HOST_API}/article/nopicture/edit/${id}`,
       body
     );
   }

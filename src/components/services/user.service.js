@@ -1,10 +1,11 @@
 import axios from "axios";
+import Session from "supertokens-auth-react/recipe/session";
+Session.addAxiosInterceptors(axios);
 
 export default class UserService {
   /**
    * Créer un utilisateur
    * @param body
-   * @returns {Promise<AxiosResponse<T>>}
    */
   static async inscription(body) {
     console.log(process.env.REACT_APP_HOST_API, body);

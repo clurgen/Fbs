@@ -20,7 +20,7 @@ export default function Article() {
         });
     };
     lArticle();
-  });
+  }, []);
 
   return (
     <Fragment>
@@ -28,19 +28,25 @@ export default function Article() {
         {article.map((val, key) => {
           let episode;
           if (val.episode > 0) {
-            episode = <h3>Episode: {val.episode}</h3>;
+            episode = <h3 className="text-center">Episode: {val.episode}</h3>;
           }
           let nbEpisode;
-          if (val.nbEpisode > 0) {
-            nbEpisode = <h3>Nombre d'épisode: {val.nbEpisode}</h3>;
+          if (val.nbEpisodes > 0) {
+            nbEpisode = (
+              <h3 className="text-center">
+                Nombre d'épisodes: {val.nbEpisodes}
+              </h3>
+            );
           }
           let nbSaison;
           if (val.nbSaison > 0) {
-            nbSaison = <h3>Nombre de saisons: {val.nbSaison}</h3>;
+            nbSaison = (
+              <h3 className="text-center">Nombre de saisons: {val.nbSaison}</h3>
+            );
           }
           let avis;
           if (val.avis) {
-            avis = <h3 text-center>{val.avis}</h3>;
+            avis = <h3 className="avis text-center">{val.avis}</h3>;
           }
           let video;
           if (val.urlVideo) {
@@ -49,22 +55,22 @@ export default function Article() {
 
           return (
             <div key={key} className="container">
-              <div className="h1 text-center">
-                <h1>{val.name}</h1>
-              </div>
-              <div className="d-flex flex-row justify-content-around">
-                <div className="col-md-5">
+              <h1 className="title text-center pt-5">{val.name}</h1>
+              <div className="d-flex row align-items-center justify-content-around pt-3 pb-5">
+                <div className="col-xl-5">
                   <h2>Description: </h2>
-                  <p className="h4">{val.description}</p>
+                  <p className="h4 pb-2">{val.description}</p>
                 </div>
-                <div className="col-md-3 align-right">
+                <div className="col-xl-4 row col-md-6 justify-content-center">
                   {nbSaison}
                   {nbEpisode}
-                  <img
-                    className="img-fluid mw-100"
-                    alt="Couverture de l'anime"
-                    src={`${process.env.REACT_APP_HOST_API}/${val.image}`}
-                  />
+                  <div className="pt-1 pb-1 col-xl-9">
+                    <img
+                      className="img-fluid mw-100"
+                      alt="Couverture de l'anime"
+                      src={val.image}
+                    />
+                  </div>
                 </div>
               </div>
               {episode}

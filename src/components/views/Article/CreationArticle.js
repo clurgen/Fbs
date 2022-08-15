@@ -4,9 +4,11 @@ import "../../../App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ArticleService from "../../services/article.service";
+// import { Navigate } from "react-router-dom";
 
 export default function CreationArticle() {
   const { register, handleSubmit } = useForm();
+  // const { rewiew, setReview } = useState("");
 
   async function onSubmit(data) {
     const formData = new FormData();
@@ -48,86 +50,129 @@ export default function CreationArticle() {
   }
 
   return (
-    <div className="container-fluid">
-      <h2 className="h2 text-center py-3">Super formulaire !</h2>
-      <div className="container d-flex justify-content-center">
-        <div className="col-md-10 py-3">
-          <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-group">
-              <label>Nom</label>
-              <input
-                {...register("name")}
-                className="form-control"
-                type="text"
-              />
-              <label>Description</label>
-              <textarea
-                {...register("description")}
-                className="form-control"
-                type="text"
-              />
-              <label>Nombre de Saison</label>
-              <input
-                {...register("nbSaison")}
-                className="form-control"
-                type="number"
-              />
-              <label>Nombre d'épisode</label>
-              <input
-                {...register("nbEpisode")}
-                className="form-control"
-                type="number"
-              />
-              <label>Episode</label>
-              <input
-                {...register("episode")}
-                className="form-control"
-                type="number"
-              />
-              <label>Vidéo</label>
-              <input
-                {...register("video")}
-                className="form-control"
-                type="text"
-              />
-              <label>Image</label>
-              <input
-                {...register("image")}
-                className="form-control"
-                type="file"
-                name="image"
-                accept="image/*"
-              />
-              <label>Avis</label>
-              <input
-                {...register("avis")}
-                className="form-control"
-                type="text"
-              />
-              <label>Ressenti</label>
-              <select {...register("ressenti")} className="form-control">
-                <option value="">Choisir</option>
-                <option value="superTop">SUPER Top</option>
-                <option value="top">Top</option>
-                <option value="moyen">Moyen</option>
-                <option value="pasOuf">Pas ouf</option>
-                <option value="naze">Naze</option>
-              </select>
-              <label>Playlist</label>
-              <select {...register("playlist")} className="form-control">
-                <option value="">Choisir</option>
-                <option value="Mushoku_review">Mushoku</option>
-                <option value="Spider_review">spider so what</option>
-                <option value="FBS">FBS</option>
-              </select>
-              <div className="py-2">
-                <button type="submit" className="btn btn-primary">
-                  Ajouter un article
-                </button>
+    <div>
+      <div className="container">
+        <div className="mx-3 py-3 d-flex justify-content-center">
+          <div className="card col-xl py-3 shadow text-white bg-dark rounded">
+            <div className="card-body">
+              <h2 className="h2 text-center py-3">Super formulaire !</h2>
+              <div className="d-flex align-items-center justify-content-center container-center">
+                <div className="py-3">
+                  <form
+                    encType="multipart/form-data"
+                    onSubmit={handleSubmit(onSubmit)}
+                  >
+                    <div className="form row">
+                      <div className="form-group">
+                        <label>Nom</label>
+                        <input
+                          {...register("name")}
+                          className="form-control"
+                          type="text"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Description</label>
+                        <textarea
+                          {...register("description")}
+                          className="form-control"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div className="form row">
+                      <div className="form-group col-md-4">
+                        <label>Nombre de Saison</label>
+                        <input
+                          {...register("nbSaison")}
+                          className="form-control"
+                          type="number"
+                        />
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label>Nombre d'épisode</label>
+                        <input
+                          {...register("nbEpisodes")}
+                          className="form-control"
+                          type="number"
+                        />
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label>Episode</label>
+                        <input
+                          {...register("episode")}
+                          className="form-control"
+                          type="number"
+                        />
+                      </div>
+                    </div>
+                    <div className="form row">
+                      <div className="form-group ">
+                        <label>Vidéo</label>
+                        <input
+                          {...register("video")}
+                          className="form-control"
+                          type="text"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Image</label>
+                        <input
+                          {...register("image")}
+                          className="form-control"
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label>Avis</label>
+                      <input
+                        {...register("avis")}
+                        className="form-control"
+                        type="text"
+                      />
+                    </div>
+                    <div className="form row">
+                      <div className="form-group col-md-6">
+                        <label>Ressenti</label>
+                        <select
+                          {...register("ressenti")}
+                          className="form-control"
+                        >
+                          <option value="">Choisir</option>
+                          <option value="superTop">SUPER Top</option>
+                          <option value="top">Top</option>
+                          <option value="moyen">Moyen</option>
+                          <option value="pasOuf">Pas ouf</option>
+                          <option value="naze">Naze</option>
+                        </select>
+                      </div>
+                      <div className="form-group col-md-6">
+                        <label>Playlist</label>
+                        <select
+                          {...register("playlist")}
+                          className="form-control"
+                        >
+                          <option value="">Choisir</option>
+                          <option value="Review">Review</option>
+                          <option value="FBS">FBS</option>
+                          <option value="Opening">Opening</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="mt-2 justify-content-center">
+                      <button type="submit" className="mt-2 btn btn-primary">
+                        Ajouter un article
+                      </button>
+                    </div>
+                    <ToastContainer></ToastContainer>
+                  </form>
+                </div>
               </div>
-              <ToastContainer></ToastContainer>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

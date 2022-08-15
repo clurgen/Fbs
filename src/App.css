@@ -49,3 +49,51 @@
 .article h3 {
   margin: 20px;
 }
+
+.card {
+  width: 20rem;
+}
+
+.card-img,
+.card-img-top {
+  height: 16rem;
+}
+
+.paginationBtns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBtns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.paginationBtns a:hover {
+  color: black;
+  background-color: white;
+}
+
+.paginationActived a {
+  color: black;
+  background-color: white;
+}
+
+.leLogo {
+  width: 11%;
+}
+
+#light {
+  background-color: white;
+}
+
+#dark {
+  background-color: black;
+}
