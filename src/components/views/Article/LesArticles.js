@@ -11,7 +11,7 @@ export default function LesArticles() {
   const playlist = urlSplit[4];
   const [articleList, setArticleList] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const articlePerPage = 3;
+  const articlePerPage = 6;
   const pageVisited = pageNumber * articlePerPage;
 
   const displayArticle = articleList
@@ -21,9 +21,9 @@ export default function LesArticles() {
       return (
         <div
           key={key}
-          className="col-xl-3 mx-3 py-3 d-flex justify-content-center"
+          className="col-xl-3 col-md-5 mx-3 py-3 d-flex justify-content-center"
         >
-          <div className="card shadow p-3 mb-5 text-white bg-dark rounded">
+          <div className="card apparition whiteShadow p-3 mb-5 text-white bg-dark rounded">
             <img className="card-img-top" src={val.image} alt={val.name} />
             <div className="card-body">
               <h5 className="card-title">{val.name}</h5>
@@ -79,9 +79,9 @@ export default function LesArticles() {
     <Fragment>
       <div className="container">
         {playlist ? (
-          <h1 className="text-center pt-4 py-1">Mes {playlist} </h1>
+          <h1 className="apparition text-center pt-4 py-1">Mes {playlist} </h1>
         ) : (
-          <h1 className="text-center pt-4 py-1">Mes Articles </h1>
+          <h1 className="apparition text-center pt-4 py-1">Mes Articles </h1>
         )}
         <div className="row d-flex justify-content-center">
           {displayArticle}

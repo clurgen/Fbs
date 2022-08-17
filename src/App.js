@@ -5,8 +5,15 @@ import Creation from "./components/views/Article/CreationArticle";
 import Update from "./components/views/Article/UpdateArticle";
 import Article from "./components/views/Article/Article";
 import Articles from "./components/views/Article/LesArticles";
+import CreationFatman from "./components/views/Fatman/CreationFatman";
+import UpdateFatman from "./components/views/Fatman/UpdateFatman";
+import Fatman from "./components/views/Fatman/Fatman";
+import LesFatmen from "./components/views/Fatman/LesFatmen";
 import Navbar from "./components/views/Navbar/Navbar";
 import Deconnexion from "./components/views/User/Deconnexion";
+import Home from "./components/views/Home/Home.js";
+import "./components/views/Home/Home.css";
+
 // import Inscription from "./components/views/User/Inscription";
 
 import SuperTokens, {
@@ -97,6 +104,7 @@ function App() {
         <Navbar></Navbar>
         <SuperTokensWrapper>
           <Routes>
+            <Route path="/" className="home" element={<Home />} />
             <Route path="/article/add" element={<Creation />} />
             <Route path="/article/:id/" element={<Article />} />
             <Route path="/article/edit/:id/" element={<Update />} />
@@ -104,6 +112,11 @@ function App() {
             <Route path="/articles/opening" element={<Articles />} />
             <Route path="/articles/rewiew" element={<Articles />} />
             <Route path="/articles" element={<Articles />} />
+
+            <Route path="/fatman/add" element={<CreationFatman />} />
+            <Route path="/fatman/:id/" element={<Fatman />} />
+            <Route path="/fatman/edit/:id/" element={<UpdateFatman />} />
+            <Route path="/fatmen" element={<LesFatmen />} />
             {getSuperTokensRoutesForReactRouterDom(reactRouterDom)}
             <Route
               path="/deconnexion"

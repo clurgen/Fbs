@@ -25,7 +25,6 @@ export default function UpdateArticle() {
   const { register, handleSubmit } = useForm();
 
   async function onSubmit(data) {
-    console.log(data.image.length);
     if (data.image.length > 0) {
       const formData = new FormData();
       formData.append("name", data.name);

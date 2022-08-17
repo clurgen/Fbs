@@ -10,14 +10,24 @@ export default function Navbar(props) {
         <Link className="navbar-brand" to="/">
           <img src={logo_fbs} alt="logo" className="leLogo" />
         </Link>
+
         <Link className="navbar-brand" to="/">
           Accueil
         </Link>
-        <Link className="navbar-brand" to="/article/add">
-          Ajouter un article
-        </Link>
-        <Link className=" navbar-brand" to="/articles">
+
+        <Link className="navbar-brand " to="/articles">
           Articles
+        </Link>
+
+        <Link
+          className="navbar-brand dropdown"
+          id="navbarDropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          to="/fatmen"
+        >
+          Fatman
         </Link>
         {/* <Link className="navbar-brand" to="/profil">
         Mon profil
