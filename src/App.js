@@ -69,7 +69,7 @@ SuperTokens.init({
   appInfo: {
     appName: "fbs",
     apiDomain: process.env.REACT_APP_HOST_API,
-    websiteDomain: process.env.WEBSITE_DOMAIN,
+    websiteDomain: process.env.REACT_APP_HOST,
     apiBasePath: "/auth",
     websiteBasePath: "/auth",
   },
