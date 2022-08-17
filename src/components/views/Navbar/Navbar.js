@@ -40,14 +40,14 @@ export default function Navbar(props) {
           checked={props.theme === "dark"}
         />
       </div> */}
-      <div className="justify-content-end mx-4">
+      {/* <div className="justify-content-end mx-4">
         <Link className="navbar-brand" to="/auth">
           Connexion
         </Link>
         <Link className="navbar-brand" to="/deconnexion">
           Deconnexion
         </Link>
-      </div>
+      </div> */}
       {/* <Link className="navbar-brand" to="/inscription">
         Inscription
       </Link> */}
