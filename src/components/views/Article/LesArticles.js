@@ -24,7 +24,9 @@ export default function LesArticles() {
           className="col-xl-3 col-md-5 mx-3 py-3 d-flex justify-content-center"
         >
           <div className="card apparition whiteShadow p-3 mb-5 text-white bg-dark rounded">
-            <img className="card-img-top" src={val.image} alt={val.name} />
+            <Link to={link}>
+              <img className="card-img-top" src={val.image} alt={val.name} />
+            </Link>
             <div className="card-body">
               <h5 className="card-title">{val.name}</h5>
               <p className="card-text">

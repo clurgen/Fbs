@@ -1,7 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "../../../App.css";
 import ArticleService from "../../services/article.service";
-
+import superTop from "../../../images/Chibi_Love-removebg-preview.png";
+import top from "../../../images/Chibi_full_smile-removebg-preview.png";
+import moyen from "../../../images/Chibi_Normal-removebg-preview.png";
+import naze from "../../../images/Chibi_Arrogant-removebg-preview.png";
 export default function Article() {
   const url = window.location.href;
   const urlSplit = url.split("/");
@@ -46,11 +49,36 @@ export default function Article() {
           }
           let avis;
           if (val.avis) {
-            avis = <h3 className="avis text-center">{val.avis}</h3>;
+            avis = <h3 className="avis text-center py-4">{val.avis}</h3>;
           }
           let video;
           if (val.urlVideo) {
             video = val.urlVideo;
+          }
+
+          let ressenti;
+          switch (val.ressenti) {
+            case "superTop":
+              ressenti = <img src={superTop} alt={val.ressenti} />;
+              break;
+            case "top":
+              ressenti = (
+                <img
+                  className="img-fluid col-xl-3 d-flex"
+                  src={top}
+                  alt={val.ressenti}
+                />
+              );
+              break;
+            case "Moyen":
+              ressenti = <img src={moyen} alt={val.ressenti} />;
+              break;
+            case "Naze":
+              ressenti = <img src={naze} alt={val.ressenti} />;
+              break;
+            default:
+              ressenti = <img src={top} alt={val.ressenti} />;
+              break;
           }
 
           return (
@@ -64,7 +92,7 @@ export default function Article() {
                 <div className="col-xl-4 row col-md-6 justify-content-center">
                   {nbSaison}
                   {nbEpisode}
-                  <div className="pt-1 pb-1 col-xl-9">
+                  <div className="pt-1 pb-1 text-center col-xl-9">
                     <img
                       className="img-fluid mw-100"
                       alt="Couverture de l'anime"
@@ -73,14 +101,13 @@ export default function Article() {
                   </div>
                 </div>
               </div>
-              {episode}
+              <div className="row align-items-center">
+                <div
+                  className="d-flex justify-content-center"
+                  dangerouslySetInnerHTML={{ __html: video }}
+                ></div>
+              </div>
               {avis}
-              <div
-                className="d-flex justify-content-center"
-                dangerouslySetInnerHTML={{ __html: video }}
-              ></div>
-              <h3>Playlist: {val.playlist}</h3>
-              <h3>Ressenti: {val.ressenti}</h3>
             </div>
           );
         })}

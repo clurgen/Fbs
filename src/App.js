@@ -63,14 +63,13 @@ SuperTokens.init({
     defaultLanguage: "fr",
   },
   supertokens: {
-    connectionURI:
-      "https://4e4a9ac11c1011ed8042dbc33e0dcfd5-us-east-1.aws.supertokens.io:3567",
-    apiKey: "aFPvuC9htRJ=o7t8rvS2KSpMat3n13",
+    connectionURI: process.env.connectionURI,
+    apiKey: process.env.apiKey,
   },
   appInfo: {
     appName: "fbs",
-    apiDomain: "http://localhost:3001",
-    websiteDomain: "http://localhost:3000",
+    apiDomain: process.env.REACT_APP_HOST_API,
+    websiteDomain: process.env.WEBSITE_DOMAIN,
     apiBasePath: "/auth",
     websiteBasePath: "/auth",
   },
