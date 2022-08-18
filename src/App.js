@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Creation from "./components/views/Article/CreationArticle";
@@ -13,9 +13,7 @@ import Navbar from "./components/views/Navbar/Navbar";
 import Deconnexion from "./components/views/User/Deconnexion";
 import Home from "./components/views/Home/Home.js";
 import "./components/views/Home/Home.css";
-
 // import Inscription from "./components/views/User/Inscription";
-
 import SuperTokens, {
   SuperTokensWrapper,
   getSuperTokensRoutesForReactRouterDom,
@@ -26,6 +24,7 @@ import ThirdPartyEmailPassword, {
 } from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import Session from "supertokens-auth-react/recipe/session";
 import * as reactRouterDom from "react-router-dom";
+import gif from "./images/chibiLoader.gif";
 
 SuperTokens.init({
   languageTranslations: {
@@ -93,42 +92,62 @@ SuperTokens.changeLanguage("fr");
 export const ThemeContext = createContext(null);
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
   const toggleTheme = () => {
     setTheme((current) => (current === "light" ? "dark" : "light"));
   };
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App text-white bg-dark" id={theme}>
-        <Navbar></Navbar>
-        <SuperTokensWrapper>
-          <Routes>
-            <Route path="/" className="home" element={<Home />} />
-            <Route path="/article/add" element={<Creation />} />
-            <Route path="/article/:id/" element={<Article />} />
-            <Route path="/article/edit/:id/" element={<Update />} />
-            <Route path="/articles/fbs" element={<Articles />} />
-            <Route path="/articles/opening" element={<Articles />} />
-            <Route path="/articles/rewiew" element={<Articles />} />
-            <Route path="/articles" element={<Articles />} />
+        {loading ? (
+          <div className="content wrapper">
+            <div id="stars"></div>
+            <div id="stars2"></div>
+            <div id="stars3"></div>
+            <img className="loader loaderImg" src={gif} alt="loader" />
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <Navbar></Navbar>
+            <SuperTokensWrapper>
+              <Routes>
+                <Route path="/" className="home" element={<Home />} />
+                <Route path="/article/add" element={<Creation />} />
+                <Route path="/article/:id/" element={<Article />} />
+                <Route path="/article/edit/:id/" element={<Update />} />
+                <Route path="/articles/fbs" element={<Articles />} />
+                <Route path="/articles/opening" element={<Articles />} />
+                <Route path="/articles/rewiew" element={<Articles />} />
+                <Route path="/articles" element={<Articles />} />
 
-            <Route path="/fatman/add" element={<CreationFatman />} />
-            <Route path="/fatman/:id/" element={<Fatman />} />
-            <Route path="/fatman/edit/:id/" element={<UpdateFatman />} />
-            <Route path="/fatmen" element={<LesFatmen />} />
-            {getSuperTokensRoutesForReactRouterDom(reactRouterDom)}
-            <Route
-              path="/deconnexion"
-              element={
-                <ThirdPartyEmailPasswordAuth>
-                  <Deconnexion />
-                </ThirdPartyEmailPasswordAuth>
-              }
-            />
-            {/* <Route path="/connexion" element={<Connexion />} />
+                <Route path="/fatman/add" element={<CreationFatman />} />
+                <Route path="/fatman/:id/" element={<Fatman />} />
+                <Route path="/fatman/edit/:id/" element={<UpdateFatman />} />
+                <Route path="/fatmen" element={<LesFatmen />} />
+                {getSuperTokensRoutesForReactRouterDom(reactRouterDom)}
+                <Route
+                  path="/deconnexion"
+                  element={
+                    <ThirdPartyEmailPasswordAuth>
+                      <Deconnexion />
+                    </ThirdPartyEmailPasswordAuth>
+                  }
+                />
+                {/* <Route path="/connexion" element={<Connexion />} />
           <Route path="/inscription" element={<Inscription />} /> */}
-          </Routes>
-        </SuperTokensWrapper>
+              </Routes>
+            </SuperTokensWrapper>
+          </div>
+        )}
       </div>
     </ThemeContext.Provider>
   );

@@ -186,6 +186,22 @@
   opacity: 0.3;
 }
 
+.content {
+  width: 100%;
+  height: 100vh;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loaderImg {
+  height: 50%;
+}
+
 @keyframes pulse {
   from {
   }
