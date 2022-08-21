@@ -15,8 +15,8 @@ export default function Navbar(props) {
           Accueil
         </Link>
 
-        <Link className="navbar-brand " to="/articles">
-          Articles
+        <Link className="navbar-brand " to="/videos">
+          Videos
         </Link>
 
         <Link

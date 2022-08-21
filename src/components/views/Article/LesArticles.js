@@ -17,7 +17,7 @@ export default function LesArticles() {
   const displayArticle = articleList
     .slice(pageVisited, pageVisited + articlePerPage)
     .map((val, key) => {
-      let link = `/article/${val.idArticle}`;
+      let link = `/video/${val.idArticle}`;
       return (
         <div
           key={key}
@@ -83,7 +83,7 @@ export default function LesArticles() {
         {playlist ? (
           <h1 className="apparition text-center pt-4 py-1">Mes {playlist} </h1>
         ) : (
-          <h1 className="apparition text-center pt-4 py-1">Mes Articles </h1>
+          <h1 className="apparition text-center pt-4 py-1">Mes Vidéos </h1>
         )}
         <div className="row d-flex justify-content-center">
           {displayArticle}

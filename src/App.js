@@ -108,7 +108,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App text-white bg-dark" id={theme}>
         {loading ? (
-          <div className="content wrapper">
+          <div className="content wrapperHome">
             <div id="stars"></div>
             <div id="stars2"></div>
             <div id="stars3"></div>
@@ -121,13 +121,13 @@ function App() {
             <SuperTokensWrapper>
               <Routes>
                 <Route path="/" className="home" element={<Home />} />
-                <Route path="/article/add" element={<Creation />} />
-                <Route path="/article/:id/" element={<Article />} />
-                <Route path="/article/edit/:id/" element={<Update />} />
-                <Route path="/articles/fbs" element={<Articles />} />
-                <Route path="/articles/opening" element={<Articles />} />
-                <Route path="/articles/rewiew" element={<Articles />} />
-                <Route path="/articles" element={<Articles />} />
+                <Route path="/video/add" element={<Creation />} />
+                <Route path="/video/:id/" element={<Article />} />
+                <Route path="/video/edit/:id/" element={<Update />} />
+                <Route path="/videos/fbs" element={<Articles />} />
+                <Route path="/videos/opening" element={<Articles />} />
+                <Route path="/videos/rewiew" element={<Articles />} />
+                <Route path="/videos" element={<Articles />} />
 
                 <Route path="/fatman/add" element={<CreationFatman />} />
                 <Route path="/fatman/:id/" element={<Fatman />} />

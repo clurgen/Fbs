@@ -1,6 +1,8 @@
-.wrapper {
-  height: 2000px;
-  width: 2000px;
+@import url("https://fonts.googleapis.com/css2?family=Trispace:wght@600;800&display=swap");
+
+.wrapperHome {
+  height: 500vh;
+  width: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #151723 100%);
   overflow: hidden;
 }
@@ -609,6 +611,16 @@
   justify-content: center;
   background: transparent;
   align-items: center;
+}
+
+.homeSubTitle {
+  font-family: "Trispace", sans-serif !important;
+}
+
+@keyframes clignote {
+  50% {
+    opacity: 2;
+  }
 }
 
 @keyframes apparition {
